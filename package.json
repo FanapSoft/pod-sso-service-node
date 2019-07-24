@@ -1,0 +1,30 @@
+{
+  "name": "pod-sso-service",
+  "version": "1.0.0",
+  "description": "This is the interface for working with POD Single Sign On(SSO) service",
+  "main": "index.js",
+  "scripts": {
+    "doc": "./node_modules/.bin/jsdoc ./lib -r -d doc",
+    "test": "./node_modules/.bin/mocha ./test/**/*.test.js"
+  },
+  "engines": {
+    "node": ">=6.17.1"
+  },
+  "author": "Fanap Soft Node.js Team",
+  "license": "ISC",
+  "dependencies": {
+    "pod-base-service" : "^1.0.0",
+    "pod-utilities": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^9.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jsdoc": "^3.6.1",
+    "mocha": "^6.1.4"
+  }
+}
