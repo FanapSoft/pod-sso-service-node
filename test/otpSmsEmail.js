@@ -37,7 +37,7 @@ describe.only('API: getOtpScenario (handshake & authorize) ', function () {
       });
   });
 
-  it('incorrect request (validation error)', function (done) {
+  xit('incorrect request (validation error)', function (done) {
     podSSO.getOtpScenario(validation)
       .then(function (result) {
         done(new Error());
@@ -61,7 +61,7 @@ describe('API: handshake', function () {
   it('correct request', function (done) {
     podSSO.handshake(correct)
       .then(function (result) {
-        // console.log(result);
+        console.log('==================>', JSON.stringify(result, null, 2));
         expect(result).to.have.property('device');
         done();
       })
@@ -101,6 +101,7 @@ describe('API: authorize', function () {
           ',signature=' + utils.createSign('host: accounts.pod.land', privateKey, 'RSA-SHA256', 'base64') +
           ',headers=host';
         correct.authorization = authorizeHeaderValue;
+        console.log('!!!!!!!!!!!!', correct, '!!!!!!!!!!!');
         done();
       })
       .catch(function () {
@@ -112,7 +113,7 @@ describe('API: authorize', function () {
   it('correct request', function (done) {
     podSSO.authorize(correct)
       .then(function (result) {
-        // console.log(result);
+        console.log('@@@@@==========>', JSON.stringify(result, null, 2));
         expect(result).to.have.property('identity');
         done();
       })

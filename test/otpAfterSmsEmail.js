@@ -8,21 +8,22 @@ const PodSSOService = require('../lib/main');
 // Variable Initialization
 let podSSO = new PodSSOService({});
 let clientId = 'CLIENT ID'; // YOUR CLIENT ID
-let clientSecret = 'CLIENT SECTERT'; // YOUR CLIENT SECTERT
+let clientSecret = 'CLIENT SECRET'; // YOUR CLIENT SECTERT
 
 let verifyData = {
-  identity: 'IDENTITY',
-  otp: 'CODE RECIEVED',
-  authorization: 'Signature keyId=KEYID,signature=SIGNATURE,headers=host'
+  identity: 'MOBILE | EMAIL',
+  otp: 'OTP',
+  authorization: 'Signature keyId=KEY ID,signature=SIGNATURE,headers=host'
 };
 let validation = { additional: 'additional' };
 
-describe.only('API: getAccessTokenByOtpScenario (verify & getAccessToken) ', function () {
+describe('API: getAccessTokenByOtpScenario (verify & getAccessToken) ', function () {
   this.timeout(10000);
 
   it('correct request', function (done) {
     podSSO.getAccessTokenByOtpScenario(Object.assign(verifyData, { client_id: clientId, client_secret: clientSecret }))
       .then(function (result) {
+        console.log('========================>', JSON.stringify(result, null, 2));
         expect(result).to.have.property('id_token');
         done();
       })
@@ -35,6 +36,7 @@ describe.only('API: getAccessTokenByOtpScenario (verify & getAccessToken) ', fun
   it('incorrect request (validation error)', function (done) {
     podSSO.getAccessTokenByOtpScenario(validation)
       .then(function (result) {
+        console.log('========================>', JSON.stringify(result, null, 2));
         done(new Error());
       })
       .catch(function (error) {
@@ -50,7 +52,7 @@ describe('API: verify', function () {
   it('correct request', function (done) {
     podSSO.verify(verifyData)
       .then(function (result) {
-        // console.log('========================>', result);
+        console.log('========================>', JSON.stringify(result, null, 2));
         expect(result).to.have.property('code');
         done();
       })
@@ -96,7 +98,7 @@ describe('API: getAccessTokenByOtp', function () {
       client_secret: clientSecret
     })
       .then(function (result) {
-        // console.log(result);
+        console.log('========================>', JSON.stringify(result, null, 2));
         expect(result).to.have.property('id_token');
         done();
       })

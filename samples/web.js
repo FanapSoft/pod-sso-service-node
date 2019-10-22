@@ -91,3 +91,18 @@ podSSOService.revokeToken(revokeTokenData)
   .catch(function (e) {
     console.log('error ============>', e);
   });
+
+// *****************************************************************
+// function: getLoginUrl
+let getLoginUrlData = {
+  // ------ REQUIRED ------
+  client_id: 'CLIENT ID',
+  redirect_uri: 'REDIRECT URI',
+  scope: ['scope1', 'scope2']
+
+  // ------ OPTIONAL ------
+  // response_type: 'RESPONSE TYPE',
+
+};
+
+console.log(podSSOService.getLoginUrl(getLoginUrlData));

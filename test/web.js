@@ -14,7 +14,22 @@ let clientSecret = 'CLIENT SECRET'; // YOUR CLIENT SECRET
 let redirectUri = 'REDIRECT URI'; // YOUR REDIRECT URI
 let code = 'CODE'; // 'CODE'
 
-describe.only('API: getAccessToken ', function () {
+describe('API: getLoginUrl ', function () {
+  this.timeout(10000);
+  let correct = {
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    response_type: 'RESPONSE TYPE',
+    scope: ['scope1', 'scope2']
+  };
+
+  it('correct request', function (done) {
+    console.log(podSSO.getLoginUrl(correct));
+    done();
+  });
+});
+
+describe('API: getAccessToken ', function () {
   this.timeout(10000);
   let correct = {
     code: code,
@@ -28,7 +43,7 @@ describe.only('API: getAccessToken ', function () {
   it('correct request', function (done) {
     podSSO.getAccessToken(correct)
       .then(function (result) {
-        console.log(result);
+        console.log('==================>', JSON.stringify(result, null, 2));
         expect(result).to.have.property('access_token');
         done();
       })
@@ -96,8 +111,8 @@ describe('API: refreshAccessToken ', function () {
         wrong = { refresh_token: 'refreshToken' };
         done();
       })
-      .catch(function () {
-        // console.log(error);
+      .catch(function (error) {
+        console.log(error);
         done(new Error());
       });
   });
@@ -105,7 +120,7 @@ describe('API: refreshAccessToken ', function () {
   it('correct request', function (done) {
     podSSO.refreshAccessToken(correct)
       .then(function (result) {
-        console.log(result);
+        console.log('==================>', JSON.stringify(result, null, 2));
         expect(result).to.have.property('access_token');
         done();
       })
@@ -195,7 +210,7 @@ describe('API: getTokenInfo ', function () {
       });
   });
 
-  it('correct request (for refresh token)', function (done) {
+  xit('correct request (for refresh token)', function (done) {
     podSSO.getTokenInfo(correctRefreshToken)
       .then(function (result) {
         // console.log(result);
@@ -208,7 +223,7 @@ describe('API: getTokenInfo ', function () {
       });
   });
 
-  it('incorrect request (validation error)', function (done) {
+  xit('incorrect request (validation error)', function (done) {
     podSSO.getTokenInfo(additional)
       .then(function (result) {
         // console.log('========================>', result);
@@ -221,7 +236,7 @@ describe('API: getTokenInfo ', function () {
       });
   });
 
-  it('incorrect request (invalid refreshToken)', function (done) {
+  xit('incorrect request (invalid refreshToken)', function (done) {
     podSSO.getTokenInfo(wrong)
       .then(function (result) {
         // console.log('========================>', result);

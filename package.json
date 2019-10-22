@@ -1,6 +1,6 @@
 {
   "name": "pod-sso-service",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "This is the interface for working with POD Single Sign On(SSO) service",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,8 @@
   "author": "Fanap Soft Node.js Team",
   "license": "ISC",
   "dependencies": {
-    "pod-base-service" : "^1.0.0",
-    "pod-utilities": "^1.0.0"
+    "pod-base-service" : "^2.3.0",
+    "pod-utilities": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
